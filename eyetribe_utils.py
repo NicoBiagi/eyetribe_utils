@@ -102,3 +102,5 @@ def record_eye_data(sock, duration=10, output_file=None):
 
     print(f"Gaze data saved to: {output_file}")
     return parsed_rows
+
+
