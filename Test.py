@@ -52,8 +52,11 @@ event.waitKeys()
 fixation = visual.TextStim(win, text='+', height=40, color='white')
 
 # === Run Trials ===
-for image_path in image_files:
+for trial_num, image_path in enumerate(image_files, start =1):
     img_stim = visual.ImageStim(win, image=image_path)
+    
+    # Send message at the start of this trial
+    recorder.send_message(f"TRIAL {trial_num} START")
     
     # Pre-trial fixation
     fixation.draw()
@@ -71,6 +74,9 @@ for image_path in image_files:
     fixation.draw()
     win.flip()
     core.wait(1)
+    
+    # Send message at the end of this trial
+    recorder.send_message(f"TRIAL {trial_num} END")
 
 # === Goodbye Message ===
 goodbye = visual.TextStim(win, text='This is the end of the task. \n\nThank you!', height=30, color='white')
